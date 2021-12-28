@@ -7,13 +7,28 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.4.2",
+    "@tailwindcss/line-clamp": "^0.2.2",
+    "@vee-validate/i18n": "^4.5.7",
+    "@vee-validate/rules": "^4.5.7",
+    "@vueuse/core": "^7.2.2",
+    "axios": "^0.24.0",
+    "axios-retry": "^3.2.4",
     "core-js": "^3.6.5",
+    "highlight.js": "^11.3.1",
+    "js-cookie": "^3.0.1",
+    "moment-timezone": "^0.5.34",
+    "tiny-emitter": "^2.1.0",
+    "vee-validate": "^4.5.7",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue3-popper": "^1.4.1",
+    "vuex": "^4.0.0-0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -25,13 +40,18 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^2.0.0-0",
+    "autoprefixer": "^9",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^7.28.0",
     "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
+    "postcss": "^7",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
   }

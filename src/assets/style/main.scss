@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap');
+
+:root {
+	--popper-theme-background-color: #333333;
+	--popper-theme-background-color-hover: #333333;
+	--popper-theme-text-color: #ffffff;
+	--popper-theme-border-width: 0px;
+	--popper-theme-border-style: solid;
+	--popper-theme-border-radius: 6px;
+	--popper-theme-padding: 10px;
+	--popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+}
+
+input,
+textarea,
+button {
+	&:focus {
+		@apply outline-none;
+	}
+}
+
+button {
+	@apply select-none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.checkbox {
+	@apply hidden;
+	& + label {
+		@apply ring-gray-300 bg-white text-gray-400;
+		.checkbox-icon {
+			@apply hidden;
+		}
+	}
+	&:checked + label {
+		@apply ring-indigo-500 bg-indigo-500 text-white;
+		.checkbox-icon {
+			@apply block;
+		}
+	}
+}
+
+.full-center {
+	@apply h-screen w-screen flex justify-center items-center;
+}

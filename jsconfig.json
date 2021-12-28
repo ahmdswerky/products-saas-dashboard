@@ -1,0 +1,15 @@
+{
+	"target": "es2015",
+	"module": "esnext",
+  "exclude": ["node_modules", "tests"],
+	"include": [
+		"./src/**/*.vue", 
+		"./src/**/*.js"
+	],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	}
+}
