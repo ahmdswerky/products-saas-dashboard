@@ -17,7 +17,7 @@ module.exports = {
 		'import/extensions': 'off',
 		'no-unused-vars': 'off',
 		'import/no-cycle': 'off',
-		'unused-vars': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+		'unused-vars': 'off',
 		'import/no-extraneous-dependencies': 'off',
 	},
 	// settings: {
