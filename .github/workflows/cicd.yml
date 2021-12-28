@@ -34,5 +34,5 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: "entrypoint.sh"
+          #source: "entrypoint.sh"
           target: "/sites/products.swerky.me/client/app"
