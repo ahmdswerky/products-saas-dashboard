@@ -34,5 +34,5 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: "."
+          source: "dist"
           target: "/sites/products.swerky.me/client/app"
