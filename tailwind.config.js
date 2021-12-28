@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors');
 const lineClamp = require('@tailwindcss/line-clamp');
 
 module.exports = {
-	purge: [],
+	purge: ['./src/**/*.html', './src/**/*.vue', './src/**/*.js'],
 	presets: [],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
