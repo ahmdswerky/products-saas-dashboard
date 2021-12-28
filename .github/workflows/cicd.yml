@@ -6,10 +6,33 @@ on:
       - main
 
 jobs:
-  deploy:
-    runs-on: self-hosted
+  prepare:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: yarn install
-      - run: yarn test:unit
-      - run: yarn build
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test:unit
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    steps:
+      - uses: actions/checkout@master
+      - name: Move files
+        uses: siva1024/scp-deployer@latest
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          source: "."
+          target: "/sites/products.swerky.me/client/app"
