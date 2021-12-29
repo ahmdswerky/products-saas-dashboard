@@ -47,7 +47,7 @@ jobs:
         with:
           cmd: build
 
-      - name: copy file via ssh password
+      - name: Copy Files to Server
         uses: appleboy/scp-action@master
         with:
           host: swerky.me
