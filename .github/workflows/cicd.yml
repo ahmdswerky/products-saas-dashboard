@@ -29,6 +29,15 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@master
+      - name: Publish
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: ./dist/*
+          host: swerky.me
+          remote: /sites/products.swerky.me/client/app/dist
+          port: 22
+          user: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
       #- name: Move files
       #  run: echo ${{ secrets.KEY }} > /tmp/swerky_server_key
       #- name: Check
@@ -39,10 +48,10 @@ jobs:
       #  shell: bash
       #  env:
       #    SSH_KEY: ${{secrets.SSH_KEY}}
-      - name: test mktemp
-        #run: temp=$(mktemp) ; echo "$SSH_KEY" > $temp ; cat $temp ; scp -i $temp . github@swerky.me:/sites/products.swerky.me/client/app
-        run: printf "$SSH_KEY"
-        shell: bash
-        env:
-          SSH_KEY: ${{ secrets.KEY }}
+      #- name: test mktemp
+      #  #run: temp=$(mktemp) ; echo "$SSH_KEY" > $temp ; cat $temp ; scp -i $temp . github@swerky.me:/sites/products.swerky.me/client/app
+      #  run: printf "$SSH_KEY"
+      #  shell: bash
+      #  env:
+      #    SSH_KEY: ${{ secrets.KEY }}
         #run: scp -i .ssh/github.swerky.me_rsa . github@swerky.me:/sites/products.swerky.me/client/app
