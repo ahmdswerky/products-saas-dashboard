@@ -1,8 +1,5 @@
 name: Deploy to Server
 
-env:
-  SSH_KEY: ${{ secrets.KEY }}
-
 on: 
   push:
     branches:
@@ -38,6 +35,13 @@ jobs:
       #  run: cat /tmp/swerky_server_key
       #- name: Clean-up
       #  run: rm -rf /tmp/swerky_server_key
+      #- run: 'echo "$SSH_KEY" > key'
+      #  shell: bash
+      #  env:
+      #    SSH_KEY: ${{secrets.SSH_KEY}}
       - name: test mktemp
         run: temp=$(mktemp) ; echo "$SSH_KEY" > $temp ; cat $temp
+        shell: bash
+        env:
+          SSH_KEY: ${{ secrets.KEY }}
         #run: scp -i .ssh/github.swerky.me_rsa . github@swerky.me:/sites/products.swerky.me/client/app
