@@ -54,6 +54,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: 22
+          rm: true
           overwrite: true
           source: "dist"
           target: "/sites/products.swerky.me/client/app"
