@@ -33,6 +33,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: Copy .env file
+        run: cp .env.production .env
       - name: Install Dependencies
         uses: borales/actions-yarn@v2.3.0
         with:
