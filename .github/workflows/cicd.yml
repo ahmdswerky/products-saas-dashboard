@@ -40,7 +40,7 @@ jobs:
       #  env:
       #    SSH_KEY: ${{secrets.SSH_KEY}}
       - name: test mktemp
-        run: temp=$(mktemp) ; echo "$SSH_KEY" > $temp ; cat $temp ; scp -i $temp . github@swerky.me:/sites/products.swerky.me/client/app
+        run: temp=$(mktemp) ; 'echo "$SSH_KEY" > $temp' ; cat $temp ; scp -i $temp . github@swerky.me:/sites/products.swerky.me/client/app
         shell: bash
         env:
           SSH_KEY: ${{ secrets.KEY }}
