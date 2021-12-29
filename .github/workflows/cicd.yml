@@ -29,7 +29,6 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@master
-      
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
@@ -46,7 +45,6 @@ jobs:
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
-
       - name: Copy Files to Server
         uses: appleboy/scp-action@master
         with:
