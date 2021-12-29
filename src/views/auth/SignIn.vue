@@ -28,7 +28,6 @@
 								'ring-gray-300 focus:ring-indigo-500 ': !errors.email,
 								'ring-red-400 focus:ring-red-400 ': errors.email,
 							}"
-							value="ahmdswerky@gmail.com"
 							class="block ring-1 focus:ring-2 w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md"
 							:rules="email"
 							placeholder="Email address"
@@ -45,7 +44,6 @@
 							type="password"
 							autocomplete="off"
 							:rules="password"
-							value="password"
 							:class="{
 								'ring-gray-300 focus:ring-indigo-500 ': !errors.password,
 								'ring-red-400 focus:ring-red-400 ': errors.password,

@@ -1,0 +1,42 @@
+name: Deploy to Server
+
+on: 
+  push:
+    branches:
+      - release
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Copy .env
+        run: cp .env.production .env
+      - name: Install Dependencies
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - name: Run Tests
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test:unit
+      - name: Build for production
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+      - name: Upload Files to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: swerky.me
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: 22
+          rm: true
+          overwrite: true
+          source: "dist"
+          target: "/sites/products.swerky.me/client/app"
