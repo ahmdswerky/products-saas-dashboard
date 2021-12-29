@@ -1,5 +1,8 @@
 name: Deploy to Server
 
+env:
+  TMP_FILENAME: $(date +%s)
+
 on: 
   push:
     branches:
@@ -29,10 +32,5 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Move files
-        uses: siva1024/scp-deployer@latest
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          #source: "entrypoint.sh"
-          target: "/sites/products.swerky.me/client/app"
+        run: echo $TMP_FILENAME
+        #run: scp -i .ssh/github.swerky.me_rsa . github@swerky.me:/sites/products.swerky.me/client/app
