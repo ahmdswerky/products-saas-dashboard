@@ -1,8 +1,5 @@
 name: Deploy to Server
 
-env:
-  TMP_FILENAME: $(date +%s)
-
 on: 
   push:
     branches:
@@ -32,5 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Move files
-        run: echo $TMP_FILENAME
+        run: echo ${{ secrets.KEY }} > /tmp/swerky_server_key
+      - name: Check
+        run: cat /tmp/swerky_server_key
         #run: scp -i .ssh/github.swerky.me_rsa . github@swerky.me:/sites/products.swerky.me/client/app
