@@ -380,7 +380,7 @@
 		</div>
 		<div v-else style="height: 80vh" class="flex justify-center items-center flex-col space-y-6">
 			<img class="w-72" src="@/assets/images/empty.png" alt="" />
-			<h3 class="text-gray-400 text-2xl font-semibold flex justify-center items-center space-x-3">
+			<h3 class="text-gray-400 text-xl font-semibold flex justify-center items-center space-x-3">
 				<span> You don't have any products yet, </span>
 				<RouterLink
 					:to="{ name: 'CreateProduct' }"

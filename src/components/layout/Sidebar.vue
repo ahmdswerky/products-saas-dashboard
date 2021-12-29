@@ -5,9 +5,11 @@
 	>
 		<div>
 			<div class="nav-logo flex flex-col justify-center items-center h-48">
-				<img src="@/assets/images/store.png" alt="Logo" class="rounded-md w-16 h-16 bg-gray-100s shadow-lgs" />
+				<img src="/images/logo.png" alt="Simple Products" class="rounded-md w-16 h-16 bg-gray-100s shadow-lgs" />
 				<!--<h2 class="mt-3 text-gray-500 font-bold text-lg">{{ merchant?.title }}</h2>-->
-				<h2 class="mt-3 text-gray-500 font-bold text-lg">Welcome {{ user.name }}</h2>
+				<h2 class="mt-3 text-gray-500 font-bolds text-lg">
+					Welcome, <span class="font-semibold">{{ user.name }}</span>
+				</h2>
 			</div>
 			<nav class="mt-2 mx-3">
 				<ul class="bg-customs grid flex-col gap-y-2">
@@ -38,9 +40,15 @@
 		<div @click="logout" class="p-3 flex justify-center">
 			<!--<RouterLink :to="{ name: 'SignIn' }"></RouterLink>-->
 			<button
-				class="flex justify-center items-center space-x-3 bg-red-400 text-red-100 hover:bg-red-500 font-semibold rounded-md px-4 py-2 w-full"
+				class="flex justify-centers justify-between items-center space-x-3 bg-red-400 text-red-100 hover:bg-red-500 font-semibold rounded-md px-4 py-2 w-full"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-6 w-6 mr-autos"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
 					<path
 						stroke-linecap="round"
 						stroke-linejoin="round"
@@ -48,7 +56,8 @@
 						d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
 					/>
 				</svg>
-				<span> Sign out </span>
+				<span class="mr-auto"> Sign out </span>
+				<span class="w-6"></span>
 			</button>
 		</div>
 	</aside>
