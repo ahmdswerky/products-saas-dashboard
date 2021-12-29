@@ -1,12 +1,14 @@
-<!--<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="public/images/logo.png" alt="Vue logo"></a></p>
+<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="public/images/logo.png" alt="Vue logo"></a></p>
 
-<p align="center">
+<!--<p align="center">
  <img src="https://github.com/ahmdswerky/products-saas-dashboard/actions/workflows/cd.yml/badge.svg" alt="build status" />
 </p>-->
 
-![Logo](public/images/logo.png)
+<h1 align="center">Products SaaS</h1>
 
-# Products SaaS
+<!--![Logo](public/images/logo.png)-->
+
+<!--# Products SaaS-->
 
 [![cd](https://github.com/ahmdswerky/products-saas-dashboard/actions/workflows/cd.yml/badge.svg)](https://github.com/ahmdswerky/products-saas-dashboard)
 
