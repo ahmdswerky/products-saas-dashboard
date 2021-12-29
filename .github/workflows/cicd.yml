@@ -55,7 +55,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: 22
           overwrite: true
-          source: "dist/*"
+          source: "dist"
           target: "/sites/products.swerky.me/client/app"
       #- name: Publish
       #  uses: nogsantos/scp-deploy@master
