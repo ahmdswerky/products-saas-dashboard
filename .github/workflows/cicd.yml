@@ -32,7 +32,7 @@ jobs:
       - name: Publish
         uses: nogsantos/scp-deploy@master
         with:
-          src: ./dist/*
+          src: .
           host: swerky.me
           remote: /sites/products.swerky.me/client/app/dist
           port: 22
