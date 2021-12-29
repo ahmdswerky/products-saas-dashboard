@@ -52,15 +52,27 @@ export function authenitcation(to, from, next) {
 			})
 			.catch(errors => {
 				console.log(errors);
-				// store.dispatch('auth/signOut').then(() => {
-				//	if (to.name !== 'SignIn') {
-				//		next({
-				//			name: 'SignIn',
-				//		});
-				//	} else {
-				//		next();
-				//	}
-				// });
+				store.dispatch('auth/signOut').then(() => {
+					if (from.name !== 'SignIn') {
+						next({
+							name: 'SignIn',
+						});
+					} else {
+						next();
+					}
+					// if () {
+					//  next({
+					//    name: 'SignIn'
+					//  });
+					// }
+				});
+				// if (to.name !== 'SignIn') {
+				//	next({
+				//		name: 'SignIn',
+				//	});
+				// } else {
+				//	next();
+				// }
 			});
 	} else if (to.meta.type === 'auth') {
 		next();

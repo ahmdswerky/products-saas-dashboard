@@ -2,11 +2,7 @@
 	<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 		<div class="max-w-md w-full space-y-8">
 			<div>
-				<img
-					class="mx-auto h-12 w-auto"
-					src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-					alt="Workflow"
-				/>
+				<img class="mx-auto h-12" src="/images/logo.png" alt="Workflow" />
 				<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Create a new account</h2>
 				<p class="mt-2 text-center text-sm text-gray-600">
 					Or
@@ -28,6 +24,7 @@
 								'ring-gray-300 focus:ring-indigo-500 ': !errors.name,
 								'ring-red-400 focus:ring-red-400 ': errors.name,
 							}"
+							value="John Doe"
 							class="block ring-1 focus:ring-2 w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md"
 							:rules="name"
 							placeholder="Name"
@@ -47,6 +44,7 @@
 								'ring-gray-300 focus:ring-indigo-500 ': !errors.email,
 								'ring-red-400 focus:ring-red-400 ': errors.email,
 							}"
+							value="john@doe.com"
 							class="block ring-1 focus:ring-2 w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md"
 							:rules="email"
 							placeholder="Email address"
@@ -63,6 +61,7 @@
 							type="password"
 							autocomplete="off"
 							:rules="password"
+							value="password"
 							:class="{
 								'ring-gray-300 focus:ring-indigo-500 ': !errors.password,
 								'ring-red-400 focus:ring-red-400 ': errors.password,
