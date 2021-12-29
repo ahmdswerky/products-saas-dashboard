@@ -55,7 +55,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: 22
           source: "dist/*"
-          target: "/sites/products.swerky.me/client/app/dist"
+          target: "/sites/products.swerky.me/client/app"
       #- name: Publish
       #  uses: nogsantos/scp-deploy@master
       #  with:
