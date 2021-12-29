@@ -27,9 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     #needs: [prepare]
     steps:
-      - uses: actions/checkout@master
-      - name: Move files
-        run: echo ${{ secrets.KEY }} > /tmp/swerky_server_key
-      - name: Check
-        run: cat /tmp/swerky_server_key
+      #- name: Checkout codebase
+      #  uses: actions/checkout@master
+      #- name: Move files
+      #  run: echo ${{ secrets.KEY }} > /tmp/swerky_server_key
+      #- name: Check
+      #  run: cat /tmp/swerky_server_key
+      #- name: Clean-up
+      #  run: rm -rf /tmp/swerky_server_key
+      - name: test mktemp
+        run: temp=$(mktemp) ; echo ${{ secrets.KEY }} > $temp ; cat $temp
         #run: scp -i .ssh/github.swerky.me_rsa . github@swerky.me:/sites/products.swerky.me/client/app
