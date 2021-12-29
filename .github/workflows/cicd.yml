@@ -6,22 +6,22 @@ on:
       - main
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: install
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test:unit
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
+  #prepare:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@master
+  #    - uses: actions/setup-node@v2
+  #      with:
+  #        node-version: '14'
+  #    - uses: borales/actions-yarn@v2.3.0
+  #      with:
+  #        cmd: install
+  #    - uses: borales/actions-yarn@v2.3.0
+  #      with:
+  #        cmd: test:unit
+  #    - uses: borales/actions-yarn@v2.3.0
+  #      with:
+  #        cmd: build
 
   deploy:
     runs-on: ubuntu-latest
@@ -29,6 +29,24 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@master
+      
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - name: Run Tests
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test:unit
+      - name: Build for production
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
