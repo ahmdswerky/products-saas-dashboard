@@ -144,6 +144,7 @@ import { useClipboard } from '@vueuse/core';
 import Popper from 'vue3-popper';
 import { ref, reactive, onMounted } from 'vue';
 import { onBeforeRouteUpdate } from 'vue-router';
+import { useStore } from 'vuex';
 import Display from '@/components/Display.vue';
 import { getIntegrationCode } from '@/services/api/integration';
 import { convertToCode } from '@/utils';
@@ -164,6 +165,8 @@ const showPopper = ref({
 // });
 
 const displays = ref(['6x2', '4x3', '4x2', '3x4']);
+const { getters } = useStore();
+const merchant = getters['merchant/merchant'];
 const selectedDisplay = ref(null);
 const htmlParts = [`<simple-products-list`, `></simple-products-list>`];
 const codes = reactive({
@@ -178,7 +181,12 @@ const codes = reactive({
 getIntegrationCode().then(({ data }) => {
 	// codes.javascript = convertToCode(data, 'javascript');
 	// codes.html = convertToCode(`<simple-products-list></simple-products-list>`, 'html');
-	codes.javascript = data;
+	codes.javascript = data.replace('{{API_KEY}}', merchant.api_key);
+	// codes.javascript =
+	// `((()=>{var c,e;c='productLists',(e=document['createElement']('script'))['src']=''['concat']('https://d2b1av8zp398ss.cloudfront.net/v1','/products.js'),e['id']='product-list-script',document['head']['append'](e),window[c]={'loaded':!0x1,'a':function(){var f=new Event();window['dispatchEvent'](f);}},window['b']='{{API_KEY}}',e['onload']=function(){var f={};f['loaded']=!0x0,(f['map'](function(g){window[c][g]=!0x0;}),window[c]['a']());};})());`.replace(
+	//	'{{API_KEY}}',
+	//	merchant.api_key
+	// );
 	codes.html = htmlParts.join('');
 });
 

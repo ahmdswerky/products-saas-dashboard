@@ -4,13 +4,16 @@
  <img src="https://github.com/ahmdswerky/products-saas-dashboard/actions/workflows/cd.yml/badge.svg" alt="build status" />
 </p>-->
 
-[![cd](https://github.com/ahmdswerky/products-saas-dashboard/actions/workflows/cd.yml/badge.svg)](https://github.com/ahmdswerky/products-saas-dashboard)
+<p align="center">
+ <img src="https://github.com/ahmdswerky/products-saas-dashboard/actions/workflows/cd.yml/badge.svg" alt="build status" />
+</p>
 
 <h1 align="center">Products SaaS</h1>
 
 <!--![Logo](public/images/logo.png)-->
 
 <!--# Products SaaS-->
+<!--[![cd](https://github.com/ahmdswerky/products-saas-dashboard/actions/workflows/cd.yml/badge.svg)](https://github.com/ahmdswerky/products-saas-dashboard)-->
 
 ## Demo
 
