@@ -12,10 +12,14 @@
 </template>
 
 <script setup>
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 
 defineComponent({
 	name: 'AuthLayout',
-	components: {},
+});
+
+onMounted(() => {
+	const img = new Image();
+	img.src = `${window.location.origin}/images/logo.png`;
 });
 </script>
