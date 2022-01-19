@@ -2,11 +2,11 @@
 	<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 		<div class="max-w-md w-full space-y-8">
 			<div>
-				<img class="mx-auto h-16" src="/images/logo.png" alt="Simple Products" />
+				<img class="mx-auto h-16" src="/images/logo.svg" alt="Simple Products" />
 				<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
 				<p class="mt-2 text-center text-sm text-gray-600">
 					Or
-					<RouterLink :to="{ name: 'SignUp' }" class="font-medium text-indigo-600 hover:text-indigo-500">
+					<RouterLink :to="{ name: 'SignUp' }" class="font-medium text-primary-600 hover:text-primary-500">
 						create a new account
 					</RouterLink>
 				</p>
@@ -21,7 +21,7 @@
 							type="email"
 							autocomplete="email"
 							:class="{
-								'ring-gray-300 focus:ring-indigo-500 ': !errors.email,
+								'ring-gray-300 focus:ring-primary-500 ': !errors.email,
 								'ring-red-400 focus:ring-red-400 ': errors.email,
 							}"
 							class="block ring-1 focus:ring-2 w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md"
@@ -41,7 +41,7 @@
 							autocomplete="off"
 							:rules="password"
 							:class="{
-								'ring-gray-300 focus:ring-indigo-500 ': !errors.password,
+								'ring-gray-300 focus:ring-primary-500 ': !errors.password,
 								'ring-red-400 focus:ring-red-400 ': errors.password,
 							}"
 							class="block ring-1 focus:ring-2 w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md"
@@ -77,7 +77,7 @@
 					</div>
 
 					<!--<div class="text-sm">
-						<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your password? </a>
+						<a href="#" class="font-medium text-primary-600 hover:text-primary-500"> Forgot your password? </a>
 					</div>-->
 				</div>
 
@@ -87,7 +87,7 @@
 						:disabled="Object.keys(errors).length || loading"
 						:class="{
 							'bg-gray-400 cursor-default': Object.keys(errors).length || loading,
-							'bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 group':
+							'bg-primary-600 hover:bg-primary-700 focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 group':
 								!Object.keys(errors).length && !loading,
 						}"
 						class="relative mt-6 w-full flex justify-center items-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white focus:outline-none"

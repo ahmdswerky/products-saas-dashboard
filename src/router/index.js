@@ -50,6 +50,15 @@ const routes = [
 		component: () => import('@/views/Products.vue'),
 	},
 	{
+		path: '/products/:id/transactions',
+		name: 'Transactions',
+		meta: {
+			title: 'Transactions',
+			layout: 'Default',
+		},
+		component: () => import('@/views/Products.vue'),
+	},
+	{
 		path: '/products/create',
 		name: 'CreateProduct',
 		meta: {
@@ -66,6 +75,24 @@ const routes = [
 			layout: 'Default',
 		},
 		component: () => import('@/views/UpdateProduct.vue'),
+	},
+	{
+		path: '/add-ons',
+		name: 'Addons',
+		meta: {
+			title: 'Add-ons',
+			layout: 'Default',
+		},
+		component: () => import('@/views/Addons.vue'),
+	},
+	{
+		path: '/api',
+		name: 'Api',
+		meta: {
+			title: 'API',
+			layout: 'Default',
+		},
+		component: () => import('@/views/Integrations/Api.vue'),
 	},
 	{
 		path: '/signin',

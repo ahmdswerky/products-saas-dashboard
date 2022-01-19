@@ -56,7 +56,7 @@
 
 		<div v-show="gateway && !loaded" class="flex-grow flex justify-center items-center">
 			<svg
-				class="animate-spin h-6 w-6 text-indigo-500"
+				class="animate-spin h-6 w-6 text-primary-500"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -79,7 +79,7 @@
 					class="bg-black bg-opacity-20 absolute top-0 right-0 bottom-0 left-0 z-20 flex justify-center items-center rounded-lg"
 				>
 					<svg
-						class="animate-spin h-6 w-6 text-indigo-500"
+						class="animate-spin h-6 w-6 text-primary-500"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
@@ -93,8 +93,8 @@
 					</svg>
 				</div>-->
 
-			<StripeConnect class="w-80 h-60" />
-			<PaypalConnect class="w-80 h-60" />
+			<StripeConnect class="w-80 h-72" />
+			<PaypalConnect class="w-80 h-72" />
 		</div>
 	</div>
 </template>

@@ -31,7 +31,7 @@
 			class="bg-white bg-opacity-70 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0 z-10 rounded-lg"
 		>
 			<svg
-				class="animate-spin h-6 w-6 text-indigo-500"
+				class="animate-spin h-6 w-6 text-primary-500"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -50,7 +50,7 @@
 			<!--<p class="text-gray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, repellendus?</p>-->
 			<!--<p class="text-gray-400">offers multiple payment methods</p>-->
 		</div>
-		<div class="flex flex-col justify-center items-start space-y-2">
+		<div class="flex flex-col justify-center items-start space-y-3">
 			<div
 				class="bg-sky-100 hover:bg-sky-50 group cursor-default rounded space-x-2 flex justify-center items-center px-2 p-1"
 			>
@@ -58,8 +58,22 @@
 				<span class="text-sm text-gray-700 group-hover:text-sky-700">Credit Cards</span>
 			</div>
 			<div
-				class="bg-sky-100 hover:bg-sky-50 group cursor-default rounded space-x-2 flex justify-center items-center px-2 p-1"
+				class="relative bg-sky-100 hover:bg-sky-50 group cursor-default rounded space-x-2 flex justify-center items-center px-2 p-1"
 			>
+				<span
+					class="px-2 py-0.5s h-5 select-none text-sm block font-semibold bg-orange-100 text-orange-500 rounded-full absolute top-0 right-0 transform -translate-y-1/2 translate-x-1/2"
+					>soon</span
+				>
+				<img draggable="false" class="select-none h-7" src="@/assets/images/payment-methods/google-pay.png" />
+				<span class="text-sm text-gray-700 group-hover:text-sky-700">Google Pay</span>
+			</div>
+			<div
+				class="relative bg-sky-100 hover:bg-sky-50 group cursor-default rounded space-x-2 flex justify-center items-center px-2 p-1"
+			>
+				<span
+					class="px-2 py-0.5s h-5 select-none text-sm block font-semibold bg-orange-100 text-orange-500 rounded-full absolute top-0 right-0 transform -translate-y-1/2 translate-x-1/2"
+					>soon</span
+				>
 				<img draggable="false" class="select-none h-7" src="@/assets/images/payment-methods/ach.png" />
 				<span class="text-sm text-gray-700 group-hover:text-sky-700">Bank Transfers (ACH)</span>
 			</div>
@@ -75,7 +89,7 @@
 			<a
 				@click="loading = true"
 				:href="link"
-				class="relative w-full flex justify-center items-center py-2 px-4 border space-x-2 border-transparent bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 group text-sm font-medium rounded-md text-white focus:outline-none"
+				class="relative w-full flex justify-center items-center py-2 px-4 border space-x-2 border-transparent bg-primary-600 hover:bg-primary-700 focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 group text-sm font-medium rounded-md text-white focus:outline-none"
 			>
 				<svg
 					v-if="loading"

@@ -13,6 +13,7 @@ const merchant = {
 
 	getters: {
 		merchant: state => state.merchant,
+		apiKey: state => state.merchant.api_key,
 	},
 };
 

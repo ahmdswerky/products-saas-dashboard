@@ -1,6 +1,10 @@
 const colors = require('tailwindcss/colors');
 const lineClamp = require('@tailwindcss/line-clamp');
 
+const primary = {
+	...colors.lightBlue,
+};
+
 module.exports = {
 	purge: ['./src/**/*.html', './src/**/*.vue', './src/**/*.js'],
 	presets: [],
@@ -16,6 +20,58 @@ module.exports = {
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',
+
+			primary,
+			// primary: {
+			//	50: '#fefaed',
+			//	100: '#fef4db',
+			//	200: '#fde9b7',
+			//	300: '#fbdf94',
+			//	400: '#fad470',
+			//	500: '#f9c94c',
+			//	600: '#c7a13d',
+			//	700: '#95792e',
+			//	800: '#64501e',
+			//	900: '#32280f',
+			// },
+
+			secondary: {
+				50: '#f1faf5',
+				100: '#e3f5eb',
+				200: '#c7ead6',
+				300: '#ace0c2',
+				400: '#90d5ad',
+				500: '#74cb99',
+				600: '#5da27a',
+				700: '#467a5c',
+				800: '#2e513d',
+				900: '#17291f',
+			},
+
+			tertiary: {
+				50: '#f3f3fe',
+				100: '#e6e7fc',
+				200: '#cdcff9',
+				300: '#b5b6f6',
+				400: '#9c9ef3',
+				500: '#8386f0',
+				600: '#696bc0',
+				700: '#4f5090',
+				800: '#343660',
+				900: '#1a1b30',
+			},
+
+			quaternary: {
+				100: '#fff2dd',
+				200: '#ffdda5',
+				300: '#ffcb79',
+				400: '#ffba4c',
+				500: '#ffa91f',
+				600: '#e6981c',
+				700: '#cc8719',
+				800: '#b37616',
+				900: '#66440c',
+			},
 
 			...colors,
 			black: colors.black,
@@ -431,6 +487,7 @@ module.exports = {
 			'5/6': '83.333333%',
 			full: '100%',
 			screen: '100vh',
+			// 'h-screen-y-4': 'calc(100vh - 2rem)',
 		}),
 		inset: (theme, { negative }) => ({
 			auto: 'auto',
@@ -608,6 +665,7 @@ module.exports = {
 		placeholderOpacity: theme => theme('opacity'),
 		ringColor: theme => ({
 			DEFAULT: theme('colors.blue.500', '#3b82f6'),
+			primary,
 			...theme('colors'),
 		}),
 		ringOffsetColor: theme => theme('colors'),
@@ -722,6 +780,7 @@ module.exports = {
 		},
 		transitionDuration: {
 			DEFAULT: '150ms',
+			none: '0ms',
 			75: '75ms',
 			100: '100ms',
 			150: '150ms',
@@ -804,6 +863,7 @@ module.exports = {
 			auto: 'auto',
 			'-1': '-1',
 			0: '0',
+			1: '1',
 			10: '10',
 			20: '20',
 			30: '30',
@@ -876,7 +936,7 @@ module.exports = {
 		container: ['responsive'],
 		contrast: ['responsive'],
 		cursor: ['responsive'],
-		display: ['responsive'],
+		display: ['responsive', 'group-hover'],
 		divideColor: ['responsive', 'dark'],
 		divideOpacity: ['responsive', 'dark'],
 		divideStyle: ['responsive'],
@@ -912,7 +972,7 @@ module.exports = {
 		gridTemplateRows: ['responsive'],
 		height: ['responsive'],
 		hueRotate: ['responsive'],
-		inset: ['responsive'],
+		inset: ['responsive', 'group-hover'],
 		invert: ['responsive'],
 		isolation: ['responsive'],
 		justifyContent: ['responsive'],
@@ -937,7 +997,7 @@ module.exports = {
 		overscrollBehavior: ['responsive'],
 		padding: ['responsive'],
 		placeContent: ['responsive'],
-		placeItems: ['responsive'],
+		placeItems: ['responsive', 'group-hover'],
 		placeSelf: ['responsive'],
 		placeholderColor: ['responsive', 'dark', 'focus'],
 		placeholderOpacity: ['responsive', 'dark', 'focus'],

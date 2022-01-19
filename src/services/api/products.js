@@ -1,7 +1,7 @@
 import api from '@/services/api';
 
-export function index() {
-	return api.get('products');
+export function index(params) {
+	return api.get('products', { params });
 }
 
 export function show(id) {

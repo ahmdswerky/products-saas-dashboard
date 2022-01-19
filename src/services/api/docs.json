@@ -1,0 +1,178 @@
+{
+	"api": {
+		"pagination": {
+			"total": 120,
+			"per_page": 12,
+			"current_page": 1,
+			"last_page": 10,
+			"has_more": true
+		},
+		"objects": {
+			"nocontent": "No Content",
+			"merchantBalance": {
+				"total": "637",
+				"currency": "USD"
+			},
+			"payment": {
+				"id": 1,
+				"amount": 1000,
+				"usd_amount": 1000,
+				"status": "succeeded",
+				"method": {
+					"key": "credit_card",
+					"name": "credit_card"
+				},
+				"created_at": 1640903021
+			},
+			"product": {
+				"id": "XwZi4FptvlWtxleoKC5X",
+				"title": "Mock Turtle: 'why",
+				"description": "Lorem ipsum dolor.",
+				"total_payments": 0,
+				"slug": "mock-turtle-why",
+				"category": "Skincare",
+				"photo": {
+					"id": 31,
+					"path": "https://api.products.swerky.me/storage/photos/products/gI4MKJrrC8lozFnjVcbo.png?1641101959",
+					"type": "photo",
+					"name": "photo",
+					"is_main": true
+				},
+				"price": 1000,
+				"currency": "USD",
+				"quantity": 10,
+				"merchant": {
+					"id": 1,
+					"api_key": "L2C9tMaJ1Qe6PKL",
+					"title": "default",
+					"reference_id": null,
+					"metas": [{
+							"id": 2,
+							"reference_id": "acct_1KCWxaDcS053G5rb",
+							"gateway": {
+								"key": "stripe",
+								"name": "stripe"
+							},
+							"status": "pending",
+							"is_able_to_accept_payments": null,
+							"currently_due": ["business_profile.product_description", "business_profile.support_phone", "business_profile.url", "email", "external_account", "tos_acceptance.date", "tos_acceptance.ip"],
+							"eventually_due": ["business_profile.product_description", "business_profile.support_phone", "business_profile.url", "email", "external_account", "tos_acceptance.date", "tos_acceptance.ip"],
+							"disabled_reason": "requirements.past_due",
+							"details_submitted": 0
+						},
+						{
+							"id": 1,
+							"reference_id": null,
+							"gateway": {
+								"key": "paypal",
+								"name": "paypal"
+							},
+							"status": "none",
+							"is_able_to_accept_payments": null,
+							"currently_due": null,
+							"eventually_due": null,
+							"disabled_reason": null,
+							"details_submitted": 0
+						}
+					],
+					"status": "none"
+				},
+				"created_at": 1640883604
+			}
+		},
+		"internal": [
+			{
+				"method": "POST",
+				"uri": "/v1/payments",
+				"description": "Create a new payment.",
+				"payload": {
+					"product_id": 100,
+					"method": "credit_card",
+					"quantity": 3
+				},
+				"object": "payment",
+				"status": 201
+			}
+		],
+		"routes": [{
+				"method": "GET",
+				"uri": "/v1/merchant/balance",
+				"description": "Get your account balance.",
+				"object": "merchantBalance",
+				"status": 200
+			}, {
+				"method": "GET",
+				"uri": "/v1/products",
+				"description": "Get a list of all products.",
+				"payload": {
+					"page": 3
+				},
+				"list": true,
+				"object": "product",
+				"status": 200
+			},
+			{
+				"method": "GET",
+				"uri": "/v1/products/:id",
+				"description": "Get a product by id.",
+				"object": "product",
+				"status": 200
+			},
+			{
+				"method": "POST",
+				"uri": "/v1/products",
+				"description": "Create a new product.",
+				"rules": {
+					"title": "required",
+					"category": "required",
+					"price": "required",
+					"photo": "required"
+				},
+				"payload": {
+					"title": "Mock Turtle: 'why",
+					"description": "Lorem ipsum dolor.",
+					"category": "Skincare",
+					"price": 1000,
+					"photo": "<File>"
+				},
+				"object": "product",
+				"status": 201
+			},
+			{
+				"method": "PUT",
+				"uri": "/v1/products/:id",
+				"description": "Update an existing product by id.",
+				"payload": {
+					"title": "Mock Turtle: 'why",
+					"description": "Lorem ipsum dolor.",
+					"category": "Skincare",
+					"price": 1000,
+					"photo": "<File>"
+				},
+				"object": "product",
+				"status": 200
+			},
+			{
+				"method": "DEL",
+				"uri": "/v1/products/:id",
+				"description": "Delete a product with id.",
+				"object": "nocontent",
+				"status": 204
+			}, {
+				"method": "GET",
+				"uri": "/v1/payments",
+				"description": "Get a list of all payments.",
+				"list": true,
+				"object": "payment",
+				"status": 200
+			},
+			{
+				"method": "GET",
+				"uri": "/v1/payments/:id",
+				"description": "Get a payment by id.",
+				"object": "payment",
+				"status": 200
+			}
+		]
+	}
+}

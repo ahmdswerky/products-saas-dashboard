@@ -40,7 +40,11 @@
 
 				<div class="flex items-center space-x-2">
 					<span v-if="balance" class="text-gray-400 text-xl">Total of</span>
-					<span v-if="balance" class="text-indigo-500 font-semibold text-2xl bg-gray-100 rounded-md px-2 py-1"
+					<span
+						@mouseenter="balanceHovered = true"
+						@mouseleave="balanceHovered = false"
+						v-if="balance"
+						class="text-primary-500 font-semibold text-2xl bg-gray-100 rounded-md px-2 py-1"
 						>${{ balance }}</span
 					>
 				</div>
@@ -66,8 +70,20 @@
 				</div>
 			</div>
 
+			<div
+				class="space-y-6 h-full flex flex-col justify-center items-center"
+				v-else-if="!loading && payments && !payments.length"
+			>
+				<img class="h-24 filter grayscale opacity-60" src="@/assets/images/no-payments.png" alt="No Payments yet" />
+				<h4 class="text-lg text-gray-400 font-semibold">No Payments for this product yet.</h4>
+			</div>
+
 			<div v-else class="divide-y overflow-y-auto flex-grow">
-				<div v-for="({ status, user, created_at }, index) in payments" :key="index" class="p-7 hover:bg-gray-100">
+				<div
+					v-for="({ status, usd_amount, user, created_at }, index) in payments"
+					:key="index"
+					class="p-7 hover:bg-gray-100"
+				>
 					<div class="flex justify-between items-center">
 						<div class="space-y-4">
 							<div class="flex items-center justify-center space-x-4">
@@ -148,9 +164,9 @@
 						</button>-->
 						</div>
 						<div class="flex flex-col items-end space-y-2">
-							<span class="text-indigo-500 font-semibold text-2xl">$2000</span>
-							<div class="flex items-center space-x-1">
-								<span class="text-gray-400 text-sm">Purchased on</span>
+							<span class="text-primary-500 font-semibold text-2xl">${{ usd_amount }}</span>
+							<div class="flex items-end flex-col space-x-1">
+								<!--<span class="text-gray-400 text-sm">Purchased on</span>-->
 								<span class="text-gray-400 text-sm font-semibold">{{
 									formatDate(created_at, 'MMMM D, YYYY hh:mm A')
 								}}</span>
@@ -165,30 +181,39 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { defineProps, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 // import { TransitionRoot } from '@headlessui/vue';
+import { useRoute, useRouter } from 'vue-router';
 import emitter from '@/plugins/emitter';
 import { index } from '@/services/api/payments';
 import { formatDate } from '@/utils';
-import { getBalance } from '@/services/api/merchants';
+
+const props = defineProps({
+	show: {
+		type: Boolean,
+		default: false,
+	},
+});
 
 const { getters, commit } = useStore();
+const router = useRouter();
+const route = useRoute();
 const product = computed(() => getters['product/product']);
-const open = computed(() => getters['product/transactionOpen']);
+const open = computed(() => props.show || getters['product/transactionOpen']);
+const balanceHovered = ref(true);
 const loading = ref(true);
-const balance = ref(null);
+const balance = ref(0);
 const payments = ref([]);
 
-function getData() {
+function getData(id) {
 	loading.value = true;
-	index(product.value.id)
+	// index(product.value.id)
+	index({ product: id })
 		.then(({ data }) => {
 			payments.value = data.data;
-		})
-		.then(() => {
-			getBalance().then(({ data }) => {
-				balance.value = data.total;
+			data.data.forEach(payment => {
+				balance.value += payment.usd_amount;
 			});
 		})
 		.finally(() => {
@@ -200,9 +225,19 @@ function close() {
 	loading.value = true;
 	payments.value = [];
 	balance.value = null;
+	router.push({
+		name: 'Products',
+		query: {
+			...route.query,
+		},
+	});
 	commit('product/setProduct', {});
 	commit('product/closeTransactions');
 }
 
-emitter.on('payment:open', data => getData());
+if (route.params.id) {
+	getData(route.params.id);
+}
+
+emitter.on('payment:open', ({ id }) => getData(id));
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div @click="select" class="flex flex-col items-center space-y-2 cursor-pointer">
 		<div
-			:class="{ 'border-indigo-500': selected }"
+			:class="{ 'border-primary-500': selected }"
 			class="h-20 border border-transparent w-36 shadow rounded-md transition-all bg-white flex flex-col justify-center items-center"
 		>
 			<!--<div v-for="col in cols" :key="col" :class="`w-1/${cols}`" class="bg-gray-400">{{ cols }}</div>-->
@@ -17,12 +17,14 @@
 					<div
 						v-for="col in cols"
 						:key="col"
-						:class="{ 'bg-indigo-500': selected, 'bg-gray-400': !selected }"
+						:class="{ 'bg-primary-500': selected, 'bg-gray-400': !selected }"
 						class="flex-shrink-0 rounded-sm w-3 h-3 transition-all"
 					></div>
 				</div>
 			</template>
-			<h4 :class="{ 'text-indigo-500': selected, 'text-gray-500': !selected }" class="font-semibold" v-else>Default</h4>
+			<h4 :class="{ 'text-primary-500': selected, 'text-gray-500': !selected }" class="font-semibold" v-else>
+				Default
+			</h4>
 		</div>
 		<span class="text-gray-500">{{ display }}</span>
 	</div>

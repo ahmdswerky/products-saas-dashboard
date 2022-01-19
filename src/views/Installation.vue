@@ -91,11 +91,11 @@
 
 			<div class="transition-all rounded overflow-hiddens relative w-2/5">
 				<span v-if="selectedDisplay !== null" class="flex h-3 w-3 absolute -top-1 -right-1">
-					<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-					<span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+					<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+					<span class="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
 				</span>
 				<!--<span class="flex h-full w-full absolute z-0">
-					<span class="animate-ping absolute inline-flex h-full w-full rounded-md bg-indigo-500 opacity-75"></span>
+					<span class="animate-ping absolute inline-flex h-full w-full rounded-md bg-primary-500 opacity-75"></span>
 					<span class="relative inline-flex rounded-md h-full w-full bg-transparent"></span>
 				</span>-->
 				<!--<span class="flex h-full w-full absolute">

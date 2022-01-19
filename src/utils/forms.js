@@ -8,4 +8,10 @@ export function createFormData(data) {
 	return form;
 }
 
-export function custom() {}
+export function focus(id) {
+	const element = document.querySelector(id);
+
+	if (element) {
+		element.focus();
+	}
+}

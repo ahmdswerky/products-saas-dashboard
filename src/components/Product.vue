@@ -86,7 +86,7 @@
 											id="title"
 											:class="{ 'ring-red-400 focus:ring-red-400': errors.title, 'ring-gray-300': !errors.title }"
 											v-model="product.title"
-											class="focus:ring-indigo-500 ring-2 focus:border-indigo-500 block w-full px-4 py-2 sm:text-sm border-gray-300 rounded-md"
+											class="focus:ring-primary-500 ring-2 focus:border-primary-500 block w-full px-4 py-2 sm:text-sm border-gray-300 rounded-md"
 											rules="required|min:2"
 											placeholder="Lorem"
 										/>
@@ -104,11 +104,11 @@
 										</div>
 										<Field
 											type="number"
-											v-model.number="product.price"
+											v-model.number="product.usd_price"
 											name="price"
 											id="price"
 											:class="{ 'ring-red-400 focus:ring-red-400': errors.price, 'ring-gray-300': !errors.price }"
-											class="focus:ring-indigo-500 ring-2 focus:border-indigo-500 block w-24 pl-7 pr-12s py-2 sm:text-sm border-gray-300 rounded-md"
+											class="focus:ring-primary-500 ring-2 focus:border-primary-500 block w-24 pl-7 pr-12s py-2 sm:text-sm border-gray-300 rounded-md"
 											rules="required|integer|min:1"
 											placeholder="0.00"
 										/>
@@ -117,7 +117,7 @@
 											<select
 												id="currency"
 												name="currency"
-												class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+												class="focus:ring-primary-500 focus:border-primary-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
 											>
 												<option>USD</option>
 												<option>CAD</option>
@@ -139,7 +139,7 @@
 											name="category"
 											id="category"
 											:class="{ 'ring-red-400 focus:ring-red-400': errors.category, 'ring-gray-300': !errors.category }"
-											class="focus:ring-indigo-500 ring-2 w-52 focus:border-indigo-500 block px-4 py-2 sm:text-sm border-gray-300 rounded-md"
+											class="focus:ring-primary-500 ring-2 w-52 focus:border-primary-500 block px-4 py-2 sm:text-sm border-gray-300 rounded-md"
 											rules="required|min:2"
 											placeholder="ex. Electronics, Puppies"
 										/>
@@ -148,7 +148,7 @@
 											<select
 												id="currency"
 												name="currency"
-												class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+												class="focus:ring-primary-500 focus:border-primary-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
 											>
 												<option>USD</option>
 												<option>CAD</option>
@@ -176,7 +176,7 @@
 												'ring-red-400 focus:ring-red-400': errors.description,
 												'ring-gray-300': !errors.description,
 											}"
-											class="shadow-sm focus:ring-indigo-500 p-3 ring-2 focus:border-indigo-500 mt-1 block w-full sm:text-sm rounded-md"
+											class="shadow-sm focus:ring-primary-500 p-3 ring-2 focus:border-primary-500 mt-1 block w-full sm:text-sm rounded-md"
 											placeholder="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et, minus."
 										></textarea>
 									</div>
@@ -211,7 +211,7 @@
 											<div class="flex text-sm text-gray-600">
 												<label
 													for="photo"
-													class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2s focus-within:ring-offset-2s focus-within:ring-indigo-500s"
+													class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2s focus-within:ring-offset-2s focus-within:ring-primary-500s"
 												>
 													<span class="focus:outline-none outline-none ring-0">Upload a photo</span>
 													<input
@@ -241,10 +241,10 @@
 									type="submit"
 									:disabled="loading"
 									:class="{
-										'bg-indigo-600 hover:bg-indigo-700': !loading,
+										'bg-primary-600 hover:bg-primary-700': !loading,
 										'cursor-default bg-gray-500 ': loading,
 									}"
-									class="flex justify-center items-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+									class="flex justify-center items-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
 								>
 									<svg
 										v-if="loading"

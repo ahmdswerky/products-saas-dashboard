@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Payments />
+		<Payments :show="route.name === 'Transactions'" />
 
 		<div class="flex justify-between items-center">
 			<h1 class="text-xl text-gray-600 mb-4 flex items-center space-x-3">
@@ -12,16 +12,52 @@
 						d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
 					/>
 				</svg>
-				<span>Products</span>
+				<span> Products </span>
 			</h1>
 
 			<RouterLink
 				:to="{ name: 'CreateProduct' }"
-				class="bg-indigo-500 hover:bg-indigo-600 transition-all text-white px-4 py-1 rounded-md text-sm"
+				class="bg-primary-500 hover:bg-primary-600 transition-all text-white px-4 py-1 rounded-md text-sm"
 			>
 				Create
 			</RouterLink>
 		</div>
+
+		<section class="flex justify-between items-end my-2 bg-gray-200s rounded-lg p-4s relative">
+			<!--<div style="width: 140px" class="bg-white z-0 shadow absolute right-0 top-0 bottom-0 rounded-lg shadow-sms"></div>-->
+			<form @submit.prevent="search()" class="relative shadow-sm flex bg-white rounded-md">
+				<span
+					@click="focus('#search')"
+					class="bg-gray-200 cursor-default select-none opacity-70 rounded-md absolute w-7 mx-2 left-0 top-2 bottom-2 text-gray-500 font-semibold flex justify-center items-center"
+				>
+					/
+				</span>
+				<input
+					v-model="searchQuery"
+					id="search"
+					type="text"
+					placeholder="Search"
+					class="pl-11 pr-4 py-2 rounded-md h-12 text-gray-700"
+				/>
+				<button class="bg-transparent rounded-r-lg px-4 text-gray-400" type="submit">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+						/>
+					</svg>
+				</button>
+			</form>
+			<div
+				class="flex flex-col items-center justify-center space-y-2 relative z-1 bg-white rounded-lg shadow py-4 px-6"
+			>
+				<span class="text-2xl mx-2 text-primary-500 font-semibold">{{ currencyFormat(balance, 'USD') }}</span>
+				<h4 class="text-gray-500">Total Revenue</h4>
+			</div>
+		</section>
+
 		<div v-if="loading" class="animate-pulse flex space-x-4">
 			<div style="height: 80vh" class="bg-gray-200 w-full rounded-lg"></div>
 		</div>
@@ -64,7 +100,7 @@
 							</thead>
 							<tbody class="bg-white divide-y divide-gray-200">
 								<tr
-									:class="{ 'bg-red-50': deleting === product.slug, 'bg-indigo-50': paymentProduct.id === product.id }"
+									:class="{ 'bg-red-50': deleting === product.slug, 'bg-primary-50': paymentProduct.id === product.id }"
 									class="relative"
 									v-for="product in products"
 									:key="product.id"
@@ -72,7 +108,7 @@
 									<td class="px-6 py-4 whitespace-nowrap group">
 										<div
 											v-if="paymentProduct.id === product.id"
-											class="absolute bg-indigo-500 top-0 left-0 bottom-0 w-1"
+											class="absolute bg-primary-500 top-0 left-0 bottom-0 w-1"
 										></div>
 										<div class="flex items-center">
 											<RouterLink
@@ -129,11 +165,12 @@
 									<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 										<div class="flex justify-center items-center space-x-2">
 											<button
-												:title="`$${product.total_payments}`"
+												v-if="product.total_payments"
+												:title="`${currencyFormat(product.total_payments, 'USD')}`"
 												@click="openPayments(product)"
 												class="bg-gray-100 flex items-center space-x-1 text-sm hover:bg-gray-200 text-gray-600 py-1 px-2 rounded-md space-x-2"
 											>
-												<!--<span>${{ product.total_payments }}</span>-->
+												<span>{{ currencyFormat(product.total_payments, 'USD') }}</span>
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
 													class="h-5 w-5"
@@ -153,7 +190,7 @@
 											<RouterLink
 												v-if="deleting !== product.slug"
 												:to="{ name: 'Product', params: { id: product.slug } }"
-												class="text-indigo-600 p-2 hover:text-indigo-900 flex justify-center items-center space-x-1"
+												class="text-primary-600 p-2 hover:text-primary-900 flex justify-center items-center space-x-1"
 											>
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
@@ -266,10 +303,19 @@
 										</div>
 									</td>
 								</tr>
-
-								<!-- More people... -->
 							</tbody>
 						</table>
+					</div>
+
+					<div class="flex justify-center items-center my-2">
+						<Paginator
+							@change="paginate"
+							:page="meta.page"
+							:total="meta.total"
+							:lastPage="meta.lastPage"
+							:hasMore="meta.hasMore"
+							:perPage="meta.perPage"
+						/>
 					</div>
 
 					<div
@@ -309,11 +355,11 @@
 										/>
 									</svg>
 								</a>
-								<!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+								<!-- Current: "z-10 bg-primary-50 border-primary-500 text-primary-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
 								<a
 									href="#"
 									aria-current="page"
-									class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+									class="z-10 bg-primary-50 border-primary-500 text-primary-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
 								>
 									1
 								</a>
@@ -384,7 +430,7 @@
 				<span> You don't have any products yet, </span>
 				<RouterLink
 					:to="{ name: 'CreateProduct' }"
-					class="bg-indigo-500 hover:bg-indigo-600 transition-all text-white px-4 py-2 rounded-md text-sm"
+					class="bg-primary-500 hover:bg-primary-600 transition-all text-white px-4 py-2 rounded-md text-sm"
 				>
 					Create a new Product
 				</RouterLink>
@@ -394,27 +440,46 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { computed, onMounted, ref, watch } from 'vue';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { onKeyStroke } from '@vueuse/core';
 import { useStore } from 'vuex';
+import Paginator from '@/components/Paginator.vue';
 import { index, remove } from '@/services/api/products';
 import Payments from '@/components/Payments.vue';
-import { currencyFormat } from '@/utils';
+import { currencyFormat, focus } from '@/utils';
+import { getBalance } from '@/services/api/merchants';
 import emitter from '@/plugins/emitter';
 
 const { commit, getters } = useStore();
+const route = useRoute();
+const router = useRouter();
+const searchQuery = ref('');
 const loading = ref(true);
 const deleting = ref(null);
 const deleted = ref(null);
+const balance = ref(0);
 const products = ref([]);
+const meta = ref({});
 const paymentProduct = computed(() => getters['product/product']);
 
-function getData() {
+function getData(params = {}) {
 	loading.value = true;
-	index()
+	index(params)
 		.then(({ data }) => {
 			products.value = data.data;
+			meta.value = {
+				page: data.current_page,
+				total: data.total,
+				lastPage: data.last_page,
+				perPage: data.per_page,
+				hasMore: data.has_more,
+			};
+		})
+		.then(() => {
+			getBalance().then(({ data }) => {
+				balance.value = data.total;
+			});
 		})
 		.catch(() => {
 			//
@@ -424,9 +489,38 @@ function getData() {
 		});
 }
 
+function paginate(page) {
+	router.push({
+		query: {
+			...route.query,
+			page,
+		},
+	});
+
+	getData({
+		...route.query,
+		page,
+	});
+}
+
 function openPayments(product) {
 	commit('product/setProduct', product);
 	commit('product/openTransactions');
+	router.push({
+		name: 'Transactions',
+		query: {
+			...route.query,
+		},
+		params: {
+			id: product.id,
+		},
+	});
+	// router.push({
+	//		query: {
+	//			...route.query,
+	//			transactions: searchQuery.value,
+	//		},
+	//	});
 	emitter.emit('payment:open', product);
 }
 
@@ -449,14 +543,69 @@ function deleteItem(slug) {
 	});
 }
 
+function search(withoutFetch = false) {
+	if (
+		(searchQuery.value.trim() === '' && route.query.search === undefined) ||
+		searchQuery.value === route.query.search
+	) {
+		return;
+	}
+
+	if (searchQuery.value.trim() && searchQuery.value.length) {
+		router.push({
+			query: {
+				...route.query,
+				search: searchQuery.value.trim(),
+			},
+		});
+	} else {
+		const query = { ...route.query };
+		searchQuery.value = null;
+
+		delete query.search;
+
+		router.push({ query });
+	}
+
+	if (!withoutFetch) {
+		getData({ search: searchQuery.value });
+	}
+}
+
 function beforeDeleteItem(slug) {
 	cancelDelete();
 	deleting.value = slug;
 }
 
+watch(
+	() => route.query.search,
+	value => {
+		searchQuery.value = value;
+		search(true);
+	}
+);
+
 onKeyStroke('Escape', () => {
 	cancelDelete();
 });
 
-getData();
+onKeyStroke('/', () => {
+	const input = document.getElementById('search');
+
+	if (!['input', 'textarea'].includes(document.activeElement.tagName)) {
+		setTimeout(() => {
+			input.focus();
+		}, 1);
+	}
+});
+
+onMounted(() => {
+	if (route.query.search) {
+		searchQuery.value = route.query.search;
+
+		getData({ search: searchQuery.value });
+	} else {
+		getData();
+	}
+});
 </script>

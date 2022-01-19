@@ -3,6 +3,7 @@ import auth from '@/store/modules/auth.store';
 import merchant from '@/store/modules/merchant.store';
 import product from '@/store/modules/product.store';
 import keys from '@/store/modules/keys.store';
+import config from '@/store/modules/config.store';
 
 export default createStore({
 	modules: {
@@ -10,5 +11,6 @@ export default createStore({
 		merchant,
 		product,
 		keys,
+		config,
 	},
 });

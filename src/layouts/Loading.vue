@@ -3,7 +3,7 @@
 		<div class="full-center" style="height: 100vh">
 			<div class="full-center h-full w-full">
 				<svg
-					class="animate-spin h-12 w-12 text-indigo-500"
+					class="animate-spin h-12 w-12 text-primary-500"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
