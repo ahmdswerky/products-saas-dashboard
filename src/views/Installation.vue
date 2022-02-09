@@ -59,6 +59,10 @@
 					style="overflow-wrap: anywhere"
 					class="whitespace-pre-wrap w-full bg-white shadow-sm text-black p-4 rounded-md code-font"
 				><span v-html="convertToCode(`<script>\n${codes.javascript}\n</script>`, 'html')"></span></pre>
+				<!--<pre
+					style="overflow-wrap: anywhere"
+					class="whitespace-pre-wrap w-full bg-white shadow-sm text-black p-4 rounded-md code-font"
+				><span v-html="convertToCode(`<script>\n${codes.javascript}\n</script>`, 'html')"></span></pre>-->
 			</div>
 		</div>
 

@@ -3,8 +3,7 @@ import axios from 'axios';
 
 export function getIntegrationCode() {
 	const { protocol } = window.location;
-	// return axios.get(`${protocol}//d2b1av8zp398ss.cloudfront.net/v1/integration.js`);
-	return axios.get(`https://products-list.test/integration.js`);
+	return axios.get(`${protocol}//${process.env.VUE_APP_WIDGET_DOMAIN}/v1/integration.js`);
 }
 
 export function index() {}

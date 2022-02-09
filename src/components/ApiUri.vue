@@ -6,7 +6,7 @@
 				class="rounded font-bold w-full text-white px-2 py-0.5"
 				:class="color"
 			>
-				{{ method === 'PUT' ? 'POST' : method }}
+				{{ method === 'PUT' ? 'PUT' : method }}
 			</span>
 		</div>
 		<span class="flex-grow text-gray-600 font-medium">{{ uri }}</span>
