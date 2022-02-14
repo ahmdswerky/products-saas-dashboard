@@ -14,7 +14,7 @@ api.interceptors.request.use(config => {
 		...config,
 		headers: {
 			...config.headers,
-			'api-key': apiKey.value,
+			'Api-Key': apiKey.value,
 		},
 	};
 });

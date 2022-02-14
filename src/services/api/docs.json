@@ -139,7 +139,7 @@
 				"status": 201
 			},
 			{
-				"method": "PUT",
+				"method": "POST",
 				"uri": "/v1/products/:id",
 				"description": "Update an existing product by id.",
 				"payload": {

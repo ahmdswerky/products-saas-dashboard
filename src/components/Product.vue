@@ -335,8 +335,8 @@ function drop(event) {
 function updateProduct(values, actions) {
 	loading.value = true;
 	// const payload = photo.value
-	//	? createFormData({ _method: 'PUT', ...values, currency: product.value.currency, photo: photo.value })
-	//	: createFormData({ _method: 'PUT', ...values, currency: product.value.currency });
+	//	? createFormData({ ...values, currency: product.value.currency, photo: photo.value })
+	//	: createFormData({ ...values, currency: product.value.currency });
 
 	const payload = { ...values };
 
@@ -346,7 +346,6 @@ function updateProduct(values, actions) {
 
 	if (props.onlyCreate === false) {
 		// eslint-disable-next-line no-underscore-dangle
-		payload._method = 'PUT';
 		payload.currency = product.value.currency;
 	}
 

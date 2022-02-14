@@ -18,7 +18,6 @@ export function disconnect(gateway) {
 	const merchantId = computed(() => store.getters['merchant/merchant'].id);
 
 	return api.post(`merchants/${merchantId.value}`, {
-		_method: 'PUT',
 		status: 'disconnected',
 		gateway,
 	});
