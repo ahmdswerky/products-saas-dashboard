@@ -145,6 +145,13 @@ const integrations = [
 		requiresKeys: true,
 	},
 	{
+		title: 'Slack',
+		description: 'Get notified about events in your store.',
+		url: 'https://slack.com',
+		icon: 'slack.svg',
+		requiresKeys: true,
+	},
+	{
 		title: 'Mailchimp',
 		description: 'Promote products and offers by email.',
 		url: 'https://mailchimp.com/',
