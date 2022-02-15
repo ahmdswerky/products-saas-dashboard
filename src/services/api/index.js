@@ -9,13 +9,17 @@ const api = axios.create({
 
 api.interceptors.request.use(config => {
 	const apiKey = computed(() => store.getters['keys/apiKey']);
+	const headers = {
+		...config.headers,
+	};
+
+	if (apiKey.value) {
+		headers['Api-Key'] = apiKey.value;
+	}
 
 	return {
 		...config,
-		headers: {
-			...config.headers,
-			'Api-Key': apiKey.value,
-		},
+		headers,
 	};
 });
 
