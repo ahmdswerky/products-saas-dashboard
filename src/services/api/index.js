@@ -14,7 +14,7 @@ api.interceptors.request.use(config => {
 	};
 
 	if (apiKey.value) {
-		headers['Api-Key'] = apiKey.value;
+		headers['Api-Key'] = typeof apiKey.value !== 'string' ? JSON.stringify(apiKey.value) : apiKey.value;
 	}
 
 	return {
