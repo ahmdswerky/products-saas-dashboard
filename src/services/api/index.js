@@ -11,9 +11,10 @@ api.interceptors.request.use(config => {
 	const apiKey = computed(() => store.getters['keys/apiKey']);
 	const headers = {
 		...config.headers,
+		'Content-Type': undefined,
 	};
 
-	delete headers.common['Content-Type'];
+	// delete headers.common['Content-Type'];
 
 	if (
 		(typeof apiKey.value === 'string' && apiKey.value) ||
