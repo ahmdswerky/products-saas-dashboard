@@ -14,11 +14,6 @@ api.interceptors.request.use(config => {
 		'Content-Type': undefined,
 	};
 
-	delete config.headers.common['Content-Type'];
-	config.headers['Content-Type'] = undefined;
-
-	// delete headers.common['Content-Type'];
-
 	if (
 		(typeof apiKey.value === 'string' && apiKey.value) ||
 		(typeof apiKey.value === 'object' && Object.keys(apiKey.value).length)

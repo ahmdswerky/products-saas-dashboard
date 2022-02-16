@@ -118,7 +118,7 @@ const integrations = [
 	},
 	{
 		title: 'hotjar',
-		description: 'Provide Chat Support for your users.',
+		description: 'Get heatmap for of your users.',
 		url: 'https://www.hotjar.com/',
 		icon: 'hotjar.svg',
 		requiresKeys: true,
@@ -159,13 +159,6 @@ const integrations = [
 		requiresKeys: true,
 	},
 	{
-		title: 'Crips',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://crisp.chat/en/',
-		icon: 'crisp.svg',
-		requiresKeys: true,
-	},
-	{
 		title: 'freshworks',
 		description: 'Provide Chat Support for your users.',
 		url: 'https://freshworks.com/',
@@ -177,6 +170,13 @@ const integrations = [
 		description: 'Provide Chat Support for your users.',
 		url: 'https://www.helpdesk.com/',
 		icon: 'helpdesk.svg',
+		requiresKeys: true,
+	},
+	{
+		title: 'HelpScout',
+		description: 'Provide Chat Support for your users.',
+		url: 'https://helpscout.com/',
+		icon: 'helpscout.svg',
 		requiresKeys: true,
 	},
 	{
