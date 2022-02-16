@@ -138,7 +138,6 @@ const { commit, dispatch } = useStore();
 
 function login(values, actions) {
 	loading.value = true;
-	console.log(values, actions);
 
 	signIn(values)
 		.then(({ data }) => {

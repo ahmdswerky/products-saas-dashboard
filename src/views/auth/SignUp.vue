@@ -153,7 +153,6 @@ const { commit, dispatch } = useStore();
 
 function register(values, actions) {
 	loading.value = true;
-	console.log(values, actions);
 
 	signUp(values)
 		.then(({ data }) => {

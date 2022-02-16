@@ -13,6 +13,8 @@ api.interceptors.request.use(config => {
 		...config.headers,
 	};
 
+	delete headers.common['Content-Type'];
+
 	if (
 		(typeof apiKey.value === 'string' && apiKey.value) ||
 		(typeof apiKey.value === 'object' && Object.keys(apiKey.value).length)
