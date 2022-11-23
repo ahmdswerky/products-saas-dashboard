@@ -17,18 +17,9 @@ jobs:
           node-version: '14'
       - name: Copy .env
         run: cp .env.production .env
-      - name: Install Dependencies
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: install
-      - name: Run Tests
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test:unit
-      - name: Build for production
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
+      - run: yarn install
+      - run: yarn test:unit
+      - run: yarn build
       - name: Upload Files to Server
         uses: appleboy/scp-action@master
         with:
