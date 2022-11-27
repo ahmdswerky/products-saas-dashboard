@@ -108,7 +108,7 @@
 		<div @click="logout" class="p-3 flex justify-center">
 			<!--<RouterLink :to="{ name: 'SignIn' }"></RouterLink>-->
 			<button
-				class="flex justify-centers justify-between items-center space-x-3 bg-red-400 text-red-100 hover:bg-red-500 font-semibold rounded-md px-4 py-2 w-full"
+				class="flex justify-centers justify-between items-center space-x-3 bg-red-100 text-red-500 hover:bg-red-200 font-semibold rounded-md px-4 py-2 w-full"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -171,19 +171,19 @@ const navigation = [
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
 </svg>`,
 			},
-			{
-				title: 'Integrations',
-				to: {
-					name: 'Addons',
-				},
-				soon: true,
-				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
-</svg>`,
-				//				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-				//  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-				// </svg>`,
-			},
+// 			{
+// 				title: 'Integrations',
+// 				to: {
+// 					name: 'Addons',
+// 				},
+// 				soon: true,
+// 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+// </svg>`,
+// 				//				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+// 				//  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+// 				// </svg>`,
+// 			},
 		],
 	},
 	{

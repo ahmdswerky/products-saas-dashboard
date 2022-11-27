@@ -140,6 +140,12 @@
 				><span v-html="convertToCode(codes.html, 'html')"></span></pre>
 			</div>
 		</div>
+
+    <!-- <iframe height="300" style="width: 50%;" scrolling="no" title="Products (widget)" src="https://codepen.io/ahmdswerky/embed/ExRLJYo?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href="https://codepen.io/ahmdswerky/pen/ExRLJYo">
+      Products (widget)</a> by Ahmed Swerky (<a href="https://codepen.io/ahmdswerky">@ahmdswerky</a>)
+      on <a href="https://codepen.io">CodePen</a>.
+    </iframe> -->
 	</div>
 </template>
 

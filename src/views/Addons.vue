@@ -71,12 +71,44 @@
 					</svg>
 					<span> Integrations</span>
 
-					<span class="text-sm bg-orange-100 text-orange-500 px-2 rounded-full">soon</span>
+					<span class="text-sm bg-primary-100 text-primary-500 px-2 rounded-full">beta</span>
+          
 				</h3>
+
+				<div v-for="(group, i) in Object.keys(integrations).sort()" :key="i" class="bg-primary-100s p-4 rounded-lg">
+					<h4 class="font-medium mb-5">{{ ucFirst(group) }}</h4>
+
+					<div class="grid grid-cols-3 gap-4 relative p-6s">
+						<!--<div class="bg-white bg-opacity-60 absolute top-0 right-0 bottom-0 rounded-lg left-0 z-40"></div>-->
+						<IntegrationCard
+							v-for="(integration, index) in integrations[group]"
+							:key="index"
+							:title="integration.name"
+							:description="integration.description"
+							:enabled="integration.is_used"
+							:available="integration.is_available"
+							:url="integration.url"
+							:usage-key="integration.key"
+							:usage-secret="integration.secret"
+							:requires-keys="true"
+							@update="switchIntegrationStatus($event, integration, group)"
+						>
+							<template v-slot:icon>
+								<img
+									v-if="integration.icon"
+									class="h-full w-full object-fit rounded-full"
+									:src="require(`@/assets/images/integrations/${integration.icon}`)"
+									:alt="integration.name"
+								/>
+							</template>
+						</IntegrationCard>
+					</div>
+				</div>
 
 				<div class="grid grid-cols-3 gap-4 relative p-6s">
 					<div class="bg-white bg-opacity-60 absolute top-0 right-0 bottom-0 rounded-lg left-0 z-40"></div>
-					<IntegrationCard
+					<!--{{ integrations }}-->
+					<!--<IntegrationCard
 						v-for="({ title, description, icon, url, enabled, key, secret, requiresKeys }, index) in integrations"
 						:key="index"
 						:title="title"
@@ -96,7 +128,7 @@
 								:alt="title"
 							/>
 						</template>
-					</IntegrationCard>
+					</IntegrationCard>-->
 				</div>
 			</div>
 		</div>
@@ -104,98 +136,150 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
 import IntegrationCard from '@/components/IntegrationCard.vue';
+import { index, store } from '@/services/api/integration';
+import { ucFirst } from '@/utils';
 
-const integrations = [
-	{
-		title: 'Google Analytics',
-		description: 'Keep track of your users activites on Google Analytics.',
-		url: 'https://analytics.google.com/analytics/web/',
-		icon: 'google-analytics.png',
-		requiresKeys: true,
-		key: 'KJHASDGG',
-		secret: 'KJGNADGLASDOMWAIKERKQADSM',
-	},
-	{
-		title: 'hotjar',
-		description: 'Get heatmap for of your users.',
-		url: 'https://www.hotjar.com/',
-		icon: 'hotjar.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Intercom',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://www.intercom.com/',
-		icon: 'intercom.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Logrocket',
-		description: 'Analyize your users experience through session video recording.',
-		url: 'https://www.logrocket.com/',
-		icon: 'logrocket.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Crips',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://crisp.chat/en/',
-		icon: 'crisp.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Slack',
-		description: 'Get notified about events in your store.',
-		url: 'https://slack.com',
-		icon: 'slack.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Mailchimp',
-		description: 'Promote products and offers by email.',
-		url: 'https://mailchimp.com/',
-		icon: 'mailchimp.png',
-		requiresKeys: true,
-	},
-	{
-		title: 'freshworks',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://freshworks.com/',
-		icon: 'freshworks.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'HelpDesk',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://www.helpdesk.com/',
-		icon: 'helpdesk.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'HelpScout',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://helpscout.com/',
-		icon: 'helpscout.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Zendesk',
-		description: 'Build software to meet customer needs.',
-		url: 'https://zendesk.com/',
-		icon: 'zendesk.svg',
-		requiresKeys: true,
-	},
-	{
-		title: 'Chatbot',
-		description: 'Provide Chat Support for your users.',
-		url: 'https://www.chatbot.com/',
-		icon: 'chatbot.svg',
-		requiresKeys: true,
-	},
-];
+const integrations = ref([]);
+// const integrations = [
+//	{
+//		title: 'Google Analytics',
+//		description: 'Keep track of your users activites on Google Analytics.',
+//		url: 'https://analytics.google.com/analytics/web/',
+//		icon: 'google-analytics.png',
+//		requiresKeys: true,
+//		key: 'KJHASDGG',
+//		secret: 'KJGNADGLASDOMWAIKERKQADSM',
+//	},
+//	{
+//		title: 'hotjar',
+//		description: 'Get heatmap for of your users.',
+//		url: 'https://www.hotjar.com/',
+//		icon: 'hotjar.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Intercom',
+//		description: 'Provide Chat Support for your users.',
+//		url: 'https://www.intercom.com/',
+//		icon: 'intercom.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Logrocket',
+//		description: 'Analyize your users experience through session video recording.',
+//		url: 'https://www.logrocket.com/',
+//		icon: 'logrocket.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Crips',
+//		description: 'Provide Chat Support for your users.',
+//		url: 'https://crisp.chat/en/',
+//		icon: 'crisp.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Slack',
+//		description: 'Get notified about events in your store.',
+//		url: 'https://slack.com',
+//		icon: 'slack.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Mailchimp',
+//		description: 'Promote products and offers by email.',
+//		url: 'https://mailchimp.com/',
+//		icon: 'mailchimp.png',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'freshworks',
+//		description: 'Provide Chat Support for your users.',
+//		url: 'https://freshworks.com/',
+//		icon: 'freshworks.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'HelpDesk',
+//		description: 'Provide Chat Support for your users.',
+//		url: 'https://www.helpdesk.com/',
+//		icon: 'helpdesk.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'HelpScout',
+//		description: 'Provide Chat Support for your users.',
+//		url: 'https://helpscout.com/',
+//		icon: 'helpscout.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Zendesk',
+//		description: 'Build software to meet customer needs.',
+//		url: 'https://zendesk.com/',
+//		icon: 'zendesk.svg',
+//		requiresKeys: true,
+//	},
+//	{
+//		title: 'Chatbot',
+//		description: 'Provide Chat Support for your users.',
+//		url: 'https://www.chatbot.com/',
+//		icon: 'chatbot.svg',
+//		requiresKeys: true,
+//	},
+// ];
 
-function handleIntegrationUpdate(value) {
-	//
+function fetchIntegrations() {
+	// integrations.value = [];
+
+	index().then(({ data }) => {
+		integrations.value = data.data;
+	});
+}
+
+onMounted(() => {
+	fetchIntegrations();
+});
+
+function turnOfSiblingIntegrations(category) {
+	for (let i = 0; i < integrations.value[category].length; i += 1) {
+		// const integration = integrations.value[category][i];
+		integrations.value[category][i].is_used = false;
+		// integration.is_used
+	}
+	alert(JSON.stringify(integrations.value[category]));
+	// integrations.value[category].forEach(integration => {
+	//	integration.is_used = false;
+	// });
+}
+
+function switchIntegrationStatus({ key, secret, enabled }, { id, integration_name_id }, group) {
+	// turnOfSiblingIntegrations(group);
+
+	store({
+		integration_name_id,
+		key,
+		secret,
+		is_used: enabled,
+	}).then(fetchIntegrations);
+}
+
+function handleIntegrationUpdate($event, { key, secret }) {
+	// turnOf();
+	if (!$event.target) {
+		return;
+	}
+
+	// const checked = $event.target.checked;
+
+	console.log(key, secret);
+
+	// store({
+	//	key,
+	//	secret,
+	//	is_used: checked,
+	// });
 }
 </script>
